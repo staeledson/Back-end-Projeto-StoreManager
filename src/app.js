@@ -1,5 +1,5 @@
 const express = require('express');
-const { findProductsById } = require('./controllers/productsControllers');
+
 // const { log } = require('shelljs/src/common');
 const productRoute = require('./routes/productsRoute');
 
@@ -15,7 +15,7 @@ app.get('/', (_request, response) => {
 // você pode registrar suas rotas normalmente, como o exemplo acima
 // você deve usar o arquivo index.js para executar sua aplicação 
 
-app.use('/', productRoute);
+app.use('/products', productRoute);
 // app.get('/products', (req, res) => {
 //   res.status(200).json('ok');
 // });
