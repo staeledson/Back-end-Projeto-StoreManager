@@ -7,6 +7,6 @@ routes.get('/', productsControllers.findAllProduts);
 
 routes.get('/:id', productsControllers.findProductsById);
 
-// routes.get('/', productsControllers.findAllProduts);
+routes.post('/', productsControllers.insertProducts);
 
 module.exports = routes;

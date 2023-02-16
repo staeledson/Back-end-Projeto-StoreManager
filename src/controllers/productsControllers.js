@@ -20,7 +20,20 @@ const findProductsById = async (req, res) => {
     console.log('erro ao receber do service');
   }
 };
+
+const insertProducts = async (req, res) => {
+  try {
+    const { name } = req.body;
+    console.log('insert Controllers: ', name);
+    const retorno = await productsServices.insertProducts(name);
+    return res.status(201).json({ ...retorno });
+  } catch (error) {
+    console.log('erro no controllers');
+  }
+};
+
 module.exports = {
   findAllProduts,
   findProductsById,
+  insertProducts,
 };

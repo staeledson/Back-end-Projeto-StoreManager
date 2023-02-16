@@ -22,7 +22,18 @@ const findProductsById = async (id) => {
   }
 };
 
+const insertProducts = async (product) => {
+  try {
+    console.log('insert Serviçes: ', product);
+    const retorno = await productsModels.insertProducts(product);
+    return retorno;
+  } catch (error) {
+    console.log('erro no Services');
+  }
+};
+
 module.exports = {
   findProducts,
   findProductsById,
+  insertProducts,
 };
