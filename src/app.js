@@ -2,6 +2,7 @@ const express = require('express');
 
 // const { log } = require('shelljs/src/common');
 const productRoute = require('./routes/productsRoute');
+const salesRoute = require('./routes/salesRoute');
 
 const app = express();
 app.use(express.json());
@@ -16,6 +17,7 @@ app.get('/', (_request, response) => {
 // você deve usar o arquivo index.js para executar sua aplicação 
 
 app.use('/products', productRoute);
+app.use('/sales', salesRoute);
 // app.get('/products', (req, res) => {
 //   res.status(200).json('ok');
 // });
