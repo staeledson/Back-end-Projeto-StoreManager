@@ -42,18 +42,17 @@ const getId = async () => {
   }
 };
 
-const insertSale = async ({ idSale, saleDetails }) => {
+const insertSale = async ({ saleDetails }) => {
   try {
-    console.log(saleDetails);
-      saleDetails.forEach((product) => {
-          connection.execute(
-              `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) 
-              VALUE (?, ?, ?)`,
-              [idSale, product.productId, product.quantity],
-          );
+    const id = await getId();
+    await saleDetails.forEach(async (product) => {
+      connection.execute(
+        `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) 
+        VALUE (?, ?, ?)`,
+        [id, product.productId, product.quantity],
+      );
       });
-  
-      return { id: idSale, itemsSold: saleDetails };
+    return { id, itemsSold: saleDetails };
   } catch (error) {
     console.log('erro ao acessar o DB na função insertSale');
   }

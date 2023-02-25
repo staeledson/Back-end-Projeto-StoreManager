@@ -21,12 +21,9 @@ const findProductsById = async (id) => {
 };
 
 const insertSale = async (sales) => {
-  // const productRequired = sales.every((sale) => sale.productId);
-  // if (!productRequired) return { type: '400', message: '"productId" is required' }; 
   try {
-    const saleId = await salesModels.getId();
-    const itemForInsert = await salesModels.insertSale({ idSale: saleId, saleDetails: sales });
-  
+    const itemForInsert = await salesModels.insertSale({ saleDetails: sales });
+
     return { type: '', message: itemForInsert };
   } catch (error) {
     console.log('erro ao receber do models');
