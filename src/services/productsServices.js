@@ -31,8 +31,18 @@ const insertProducts = async (product) => {
   }
 };
 
+const updateProductsById = async ({ id, name }) => {
+  try {
+    const retorno = await productsModels.updateProductsById({ id, name });
+    return { type: '', message: retorno };
+  } catch (error) {
+    console.log('erro no Services');
+  }
+};
+
 module.exports = {
   findProducts,
   findProductsById,
   insertProducts,
+  updateProductsById,
 };

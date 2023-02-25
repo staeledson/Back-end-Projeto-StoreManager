@@ -1,4 +1,5 @@
 const productsServices = require('../services/productsServices');
+const middlewares = require('../middlewares/salesMiddlewares');
 
 const findAllProduts = async (_req, res) => {
   try {
@@ -36,8 +37,30 @@ const insertProducts = async (req, res) => {
   }
 };
 
+const updateProductsById = async (req, res) => {
+  try {
+    const { name } = req.body;
+    const { id } = req.params;
+    
+    if (!name) return res.status(400).json({ message: '"name" is required' });
+    if (name.length < 5) {
+      return res.status(422)
+      .json({ message: '"name" length must be at least 5 characters long' });
+    }
+    const validarProduto = await middlewares.validateIdSale(id);
+    if (validarProduto.type !== null) res.status(404).json({ message: validarProduto.message });
+
+    const { message } = await productsServices.updateProductsById({ id, name });
+
+    return res.status(200).json({ id, name: message.name });
+  } catch (error) {
+    console.log('erro no controllers');
+  }
+};
+
 module.exports = {
   findAllProduts,
   findProductsById,
   insertProducts,
+  updateProductsById,
 };

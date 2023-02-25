@@ -18,7 +18,7 @@ const validateFields = (req, res, next) => {
   return next();
 };
 
-const valideIdSale = async (id) => {
+const validateIdSale = async (id) => {
 const result = await productsModels.findProductsById(id);
 if (result.length === 0) return { type: '404', message: 'Product not found' };
 return { type: null, message: '' };
@@ -26,7 +26,7 @@ return { type: null, message: '' };
 
 const validateRequisition = async (req, res, next) => {
   const sales = req.body;
-  const database = await Promise.all(sales.map((sale) => valideIdSale(sale.productId)));
+  const database = await Promise.all(sales.map((sale) => validateIdSale(sale.productId)));
   const idNotFound = database.find((e) => e.type !== null);
   
   if (idNotFound) return res.status(404).json({ message: 'Product not found' });
@@ -37,4 +37,5 @@ const validateRequisition = async (req, res, next) => {
 module.exports = {
   validateFields,
   validateRequisition,
+  validateIdSale,
 };

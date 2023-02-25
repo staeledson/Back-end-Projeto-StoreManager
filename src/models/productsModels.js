@@ -32,8 +32,21 @@ const insertProducts = async (name) => {
   }
 };
 
+const updateProductsById = async ({ id, name }) => {
+  try {
+    await connection.execute(
+        'UPDATE StoreManager.products SET name = ? WHERE id = ?',
+        [name, id],
+    );
+    return { id, name };
+  } catch (error) {
+    console.log('erro ao receber do db na função updateProductsById');
+  }
+};
+
 module.exports = {
   findAllProducts,
   findProductsById,
   insertProducts,
+  updateProductsById,
 };
