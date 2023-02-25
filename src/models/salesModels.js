@@ -2,12 +2,13 @@ const connection = require('./connection');
 
 const findAllSales = async () => {
   try {
-    const [allProduts] = await
-      connection.execute(`SELECT p.sale_id, s.date, p.product_id, p.quantity
+    const allSales = await
+      connection.execute(`SELECT p.sale_id as saleId, s.date as date, p.product_id as productId,
+      p.quantity as quantity
     FROM StoreManager.sales AS s
     INNER JOIN StoreManager.sales_products AS p ON s.id = p.sale_id
-      ORDER BY p.sale_id, p.product_id;`);
-    return allProduts;
+      ORDER BY saleId, productId;`);
+    return allSales;
   } catch (error) {
     console.log('erro ao acessar o DB na função findAllSales');
   }
@@ -17,7 +18,7 @@ const findProductsById = async (id) => {
   try {
     const [productById] = await
       connection.execute(
-    `SELECT s.date, p.product_id, p.quantity
+    `SELECT s.date as date, p.product_id as productId, p.quantity as quantity
     FROM StoreManager.sales AS s
     INNER JOIN StoreManager.sales_products AS p ON s.id = p.sale_id
     WHERE s.id = ? ORDER BY p.sale_id, p.product_id;`,
