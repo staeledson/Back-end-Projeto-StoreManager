@@ -6,7 +6,7 @@ const findAllProducts = async () => {
       connection.execute('SELECT * FROM StoreManager.products ORDER BY id');
     return allProduts;
   } catch (error) {
-    console.log('erro ao receber do DB');
+    console.log('erro ao receber dados do DB na funcao: findAllProducts');
   }
 };
 
@@ -16,7 +16,7 @@ const findProductsById = async (id) => {
       connection.execute('SELECT * FROM StoreManager.products WHERE id = ?', [id]);
     return productById;
   } catch (error) {
-    console.log('erro ao receber do db');
+    console.log('erro ao receber dados do DB na funcao: findProductsById');
   }
 };
 
@@ -28,7 +28,7 @@ const insertProducts = async (name) => {
     );
     return { id: insertId, name };
   } catch (error) {
-    console.log('erro no Models');
+    console.log('erro ao receber dados do DB na funcao: insertProducts');
   }
 };
 
@@ -40,7 +40,18 @@ const updateProductsById = async ({ id, name }) => {
     );
     return { id, name };
   } catch (error) {
-    console.log('erro ao receber do db na função updateProductsById');
+    console.log('erro ao receber dados do DB na funcao: updateProductsById');
+  }
+};
+
+const deleteProduct = async (id) => {
+  try {
+    await connection.execute(
+      'DELETE FROM StoreManager.products WHERE id = ?',
+      [id],
+    );
+  } catch (error) {
+    console.log('erro ao receber dados do DB na funcao: deleteProduct');
   }
 };
 
@@ -49,4 +60,5 @@ module.exports = {
   findProductsById,
   insertProducts,
   updateProductsById,
+  deleteProduct,
 };

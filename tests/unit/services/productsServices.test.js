@@ -9,7 +9,7 @@ describe('Testes da camada "Services" do product ', function () {
     sinon.stub(productsModels, 'findAllProducts').resolves(allProducts);
 
     const products = await productsServices.findProducts();
-    expect(products.type).to.be.deep.equal('');
+    expect(products.type).to.be.deep.equal(null);
     expect(products.message).to.be.deep.equal([...allProducts]);
   });
 
@@ -17,7 +17,7 @@ describe('Testes da camada "Services" do product ', function () {
     sinon.stub(productsModels, 'findProductsById').resolves([productById]);
 
     const product = await productsServices.findProductsById(1);
-    expect(product.type).to.be.deep.equal('');
+    expect(product.type).to.be.deep.equal(null);
     expect(product.message).to.be.deep.equal([productById]);
   });
 

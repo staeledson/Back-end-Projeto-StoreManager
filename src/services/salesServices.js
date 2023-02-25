@@ -6,7 +6,7 @@ const findAllSales = async () => {
     if (!allProduts) return { type: '404', message: 'Sale not found' };
     return { type: '', message: allProduts };
   } catch (error) {
-    console.log('erro ao receber do Models');
+    console.log('erro ao receber dados do salesModels na funcao: findAllSales');
   }
 };
 
@@ -16,7 +16,7 @@ const findProductsById = async (id) => {
     if (productById.length === 0) return { type: '404', message: 'Sale not found' };
     return { type: '', message: [...productById] }; 
   } catch (error) {
-    console.log('erro ao receber do models o produtos by ID');
+    console.log('erro ao receber dados do salesModels na funcao: findProductsById');
   }
 };
 
@@ -26,7 +26,7 @@ const insertSale = async (sales) => {
 
     return { type: '', message: itemForInsert };
   } catch (error) {
-    console.log('erro ao receber do models');
+    console.log('erro ao receber dados do salesModels na funcao: insertSale');
   }
 };
 

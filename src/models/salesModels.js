@@ -10,7 +10,7 @@ const findAllSales = async () => {
       ORDER BY saleId, productId;`);
     return allSales;
   } catch (error) {
-    console.log('erro ao acessar o DB na função findAllSales');
+    console.log('erro ao receber dados do DB na funcao: findAllSales');
   }
 };
 
@@ -26,7 +26,7 @@ const findProductsById = async (id) => {
       );
     return productById;
   } catch (error) {
-    console.log('erro ao acessar o DB na função findProductsById');
+    console.log('erro ao receber dados do DB na funcao: findProductsById');
   }
 };
 
@@ -39,7 +39,7 @@ const getId = async () => {
     );
     return insertId;
   } catch (error) {
-    console.log('erro ao acessar o DB na função getId');
+    console.log('erro ao receber dados do DB na funcao: getId');
   }
 };
 
@@ -55,7 +55,7 @@ const insertSale = async ({ saleDetails }) => {
       });
     return { id, itemsSold: saleDetails };
   } catch (error) {
-    console.log('erro ao acessar o DB na função insertSale');
+    console.log('erro ao receber dados do DB na funcao: insertSale');
   }
 };
 

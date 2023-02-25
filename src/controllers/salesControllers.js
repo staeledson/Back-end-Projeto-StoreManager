@@ -6,7 +6,7 @@ const findAllProduts = async (_req, res) => {
     if (type) return res.status(type).json({ message });
     return res.status(200).json(message);
   } catch (error) {
-    console.log('erro ao receber dados do service');
+    console.log('erro ao receber dados do salesServices na funcao: findAllProduts');
   }
 };
 
@@ -17,7 +17,7 @@ const findProductsById = async (req, res) => {
     if (type) return res.status(type).json({ message });
     return res.status(200).json(message);
   } catch (error) {
-    console.log('erro ao receber do service');
+    console.log('erro ao receber dados do salesServices na funcao: findProductsById');
   }
 };
 
@@ -26,10 +26,10 @@ const insertSale = async (req, res) => {
     const sales = req.body;
     const { type, message } = await salesServices.insertSale(sales);
     if (type) return res.status(type).json({ message });
-    //  res.status(201).json('passou nas verificações')
+    console.log(message);
     return res.status(201).json(message);
   } catch (error) {
-    console.log('erro ao receber do service');
+    console.log('erro ao receber dados do salesServices na funcao: insertSale');
   }
 };
 

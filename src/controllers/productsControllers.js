@@ -7,7 +7,7 @@ const findAllProduts = async (_req, res) => {
     if (type) return res.status(404).json({ message });
     return res.status(200).json(message);
   } catch (error) {
-    console.log('erro ao receber dados do service');
+    console.log('erro ao receber dados do productsService na funcao: findAllProduts');
   }
 };
 
@@ -18,7 +18,7 @@ const findProductsById = async (req, res) => {
     if (type) return res.status(404).json({ message });
     return res.status(200).json(...message);
   } catch (error) {
-    console.log('erro ao receber do service');
+    console.log('erro ao receber dados do productsService na funcao: findProductsById');
   }
 };
 
@@ -33,7 +33,7 @@ const insertProducts = async (req, res) => {
     const retorno = await productsServices.insertProducts(name);
     return res.status(201).json({ ...retorno });
   } catch (error) {
-    console.log('erro no controllers');
+    console.log('erro ao receber dados do productsService na funcao: insertProducts');
   }
 };
 
@@ -54,7 +54,18 @@ const updateProductsById = async (req, res) => {
 
     return res.status(200).json({ id, name: message.name });
   } catch (error) {
-    console.log('erro no controllers');
+    console.log('erro ao receber dados do productsService na funcao: updateProductsById');
+  }
+};
+
+const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { type, message } = await productsServices.deleteProduct(id);
+    if (type) return res.status(type).json({ message });
+    return res.status(200).json([]);
+  } catch (error) {
+    console.log('erro ao receber dados do productsService na funcao: deleteProduct');
   }
 };
 
@@ -63,4 +74,5 @@ module.exports = {
   findProductsById,
   insertProducts,
   updateProductsById,
+  deleteProduct,
 };
